@@ -23,4 +23,6 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('profile', 'ProfileController@show');
     Route::get('profile/edit', 'ProfileController@editForm');
     Route::post('profile/edit', 'ProfileController@edit');
+
+    Route::get('domains', 'DomainController@getPage');
 });
