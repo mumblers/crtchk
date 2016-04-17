@@ -15,7 +15,7 @@ class UserServiceProvider extends ServiceProvider
     public function boot()
     {
         User::creating(function ($user) {
-            $user->settings = '{email:\'none\'}';
+            $user->settings = [];
         });
     }
 

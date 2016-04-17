@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Validator;
+use Notifications;
 
 class ProfileController extends DashboardController
 {
@@ -38,6 +39,8 @@ class ProfileController extends DashboardController
         }
         
         $this->user->save();
+        
+        Notifications::success('Your profile has been saved');
         
         return redirect('dashboard/profile');
     }

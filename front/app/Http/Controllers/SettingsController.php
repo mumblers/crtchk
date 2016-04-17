@@ -8,6 +8,7 @@ use App\Http\Requests;
 use View;
 use Storage;
 use Debugbar;
+use Notifications;
 
 class SettingsController extends DashboardController
 {
@@ -60,6 +61,8 @@ class SettingsController extends DashboardController
         
         $this->user->settings = $filteredSettings;
         $this->user->save();
+        
+        Notifications::success('Your settings has been saved');
         
         return redirect('dashboard/settings');
     }
