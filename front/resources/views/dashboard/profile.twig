@@ -3,7 +3,7 @@
 {% extends "dashboard/templates/base.twig" %}
 
 {% block content %}
-    <a class="btn btn-primary" href="{{ url('dashboard/profile/edit') }}">Edit profile</a>
+    {% if user.can('edit.profile') %}<a class="btn btn-primary" href="{{ url('dashboard/profile/edit') }}">Edit profile</a>{% endif %}
     <br /><br /><br />
     <div class="row">
         <div class="col-md-6">

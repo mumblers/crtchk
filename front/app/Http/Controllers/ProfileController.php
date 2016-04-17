@@ -29,6 +29,16 @@ class ProfileController extends DashboardController
         
         $user->name = $input['name'];
         $user->email = $input['email'];
+        
+        if(!empty($input['password'])) {
+            $this->validate($request, [
+                'password' => 'required|max:255|Confirmed',
+                'password_confirmation' => 'required|max:255',
+            ]);
+            
+            $user->password = bcrypt($input['password']);
+        }
+        
         $user->save();
         
         return redirect('dashboard/profile');

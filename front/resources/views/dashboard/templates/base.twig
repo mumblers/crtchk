@@ -34,10 +34,10 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="{{ url('dashboard/profile') }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="{{ url('dashboard/settings') }}"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
+                        {% if user.can('view.profile') %}<li><a href="{{ url('dashboard/profile') }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>{% endif %}
+                        {% if user.can('view.settings') %}<li><a href="{{ url('dashboard/settings') }}"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>{% endif %}
                         <li class="divider"></li>
                         <li><a href="{{ url('logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
@@ -53,9 +53,9 @@
                     <li>
                         <a {% if active == 'index' %}class="active-menu"{% endif %} href="{{ url('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
-                    <li>
+                    {% if user.can('view.domains') %}<li>
                         <a {% if active == 'domains' %}class="active-menu"{% endif %} href="{{ url('dashboard/domains') }}"><i class="fa fa-lock"></i> Domains</a>
-                    </li>
+                    </li>{% endif %}
                 </ul>
             </div>
         </nav>
