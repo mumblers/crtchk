@@ -12,8 +12,4 @@ class DashboardController extends BaseController
     public function showIndex() {
         return view('dashboard.index');
     }
-    
-    public function showProfile() {
-        return view('dashboard.profile');
-    }
 }
