@@ -163,6 +163,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Bican\Roles\RolesServiceProvider::class,
+        App\Providers\UserServiceProvider::class,
 
     ],
 
