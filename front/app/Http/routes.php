@@ -23,6 +23,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('profile', ['middleware' => 'permission:view.profile', 'uses' => 'ProfileController@show']);
     Route::get('profile/edit', ['middleware' => 'permission:edit.profile', 'uses' => 'ProfileController@editForm']);
     Route::post('profile/edit', ['middleware' => 'permission:edit.profile', 'uses' => 'ProfileController@edit']);
+    
+    Route::get('settings', ['middleware' => 'permission:view.settings', 'uses' => 'SettingsController@show']);
+    Route::post('settings', ['middleware' => 'permission:edit.settings', 'uses' => 'SettingsController@edit']);
 
     Route::get('domains', ['middleware' => 'permission:view.domains', 'uses' => 'DomainController@getPage']);
 });

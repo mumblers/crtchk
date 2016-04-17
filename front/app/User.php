@@ -34,4 +34,12 @@ class User extends Authenticatable implements HasRoleAndPermissionContract {
     public function domains(){
         return $this->hasMany('App\Domain', 'user_id', 'id');
     }
+    
+    public function getSettingsAttribute($value) {
+        return json_decode($value, true);
+    }
+    
+    public function setSettingsAttribute($value) {
+        $this->attributes['settings'] = json_encode($value);
+    }
 }
