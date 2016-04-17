@@ -20,4 +20,6 @@ Route::auth();
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', 'DashboardController@showIndex');
     Route::get('profile', 'DashboardController@showProfile');
+
+    Route::get('domains', 'DomainController@getPage');
 });

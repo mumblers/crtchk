@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Bican\Roles\Traits\HasRoleAndPermission;
 use Bican\Roles\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
 
-class User extends Authenticatable implements HasRoleAndPermissionContract
-{
+class User extends Authenticatable implements HasRoleAndPermissionContract {
     use HasRoleAndPermission, SoftDeletes, UuidForKey;
     
     /**
@@ -28,4 +27,11 @@ class User extends Authenticatable implements HasRoleAndPermissionContract
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function domains(){
+        return $this->hasMany('App\Domain', 'user_id', 'id');
+    }
 }

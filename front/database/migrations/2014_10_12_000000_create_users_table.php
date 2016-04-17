@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
+
             $table->primary('id');
         });
     }
