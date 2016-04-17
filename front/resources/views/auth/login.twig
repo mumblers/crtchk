@@ -1,0 +1,35 @@
+{% set pagetitle = 'login' %}
+
+{% extends "auth/templates/base.twig" %}
+{% block content %}
+<div class="row">
+    <div id="login-box" class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+        <div id="header">Dashboard login</div>
+        <div id="body">
+            <form action="{{ url('/login') }}" method="post">
+                {{ csrf_field() }}
+                <div class="form-group{{ errors.has('email') ? ' has-error' : '' }}">
+                    <input type="text" class="form-control" id="email" name="email" placeholder="email" value="{{ old('email') }}" />
+                    {% if errors.has('email') %}
+                        <span class="help-block">
+                            <strong>{{ errors.first('email') }}</strong>
+                        </span>
+                    {% endif %}
+                </div>
+                <div class="form-group{{ errors.has('password') ? ' has-error' : '' }}">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="password" />
+                    {% if errors.has('password') %}
+                        <span class="help-block">
+                            <strong>{{ errors.first('password') }}</strong>
+                        </span>
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
+
+                <input type="checkbox" name="remember" /> Remember me
+                <br /><br /><a href="{{ url('/password/reset') }}">Forgotten password?</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

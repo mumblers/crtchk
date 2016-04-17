@@ -12,5 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('front.home');
+});
+
+Route::auth();
+
+Route::group(['prefix' => 'dashboard'], function () {
+    Route::get('/', 'DashboardController@showIndex');
 });

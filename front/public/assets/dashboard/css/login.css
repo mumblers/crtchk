@@ -1,0 +1,28 @@
+body {
+	background: #E5EBF2;
+}
+
+@media (min-width: 768px) {
+	#login-box {
+		margin-top: 10%;
+	}
+}
+
+#login-box {
+	background: #FFFFFF;
+	padding: 0px;
+}
+
+#header {
+	background: #09192A;
+	font-size: 30px;
+	color: #ffffff;
+	padding: 4px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+#body {
+	padding: 10px;
+	margin-top: 20px;
+}
