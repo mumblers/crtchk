@@ -1,0 +1,30 @@
+{% set pagetitle = 'profile' %}
+
+{% extends "dashboard/templates/base.twig" %}
+
+{% block content %}
+    <a class="btn btn-primary" href="{{ url('dashboard/profile/edit') }}">Edit profile</a>
+    <br /><br /><br />
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <tr>
+                    <td>username</td>
+                    <td>{{ user.name }}</td>
+                </tr>
+                <tr>
+                    <td>email address</td>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <td>API key</td>
+                    <td>{{ user.api_key }}</td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td>••••••••••</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+{% endblock %}

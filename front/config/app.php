@@ -162,6 +162,7 @@ return [
         TwigBridge\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        Bican\Roles\RolesServiceProvider::class,
 
     ],
 

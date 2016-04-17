@@ -19,4 +19,5 @@ Route::auth();
 
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', 'DashboardController@showIndex');
+    Route::get('profile', 'DashboardController@showProfile');
 });
