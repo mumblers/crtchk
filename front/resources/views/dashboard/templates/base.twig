@@ -51,10 +51,10 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
                     <li>
-                        <a {% if active == 'index' %}class="active-menu"{% endif %} href="{{ url('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
+                        <a{% if active == 'index' %} class="active-menu"{% endif %} href="{{ url('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
                     {% if user.can('view.domains') %}<li>
-                        <a {% if active == 'domains' %}class="active-menu"{% endif %} href="{{ url('dashboard/domains') }}"><i class="fa fa-lock"></i> Domains</a>
+                        <a{% if active == 'domains' %} class="active-menu"{% endif %} href="{{ url('dashboard/domains') }}"><i class="fa fa-lock"></i> Domains</a>
                     </li>{% endif %}
                     <li{% if active == 'users' %} class="active"{% endif %}>
                         <a href="#"><i class="fa fa-users"></i> User administration<span class="fa arrow"></span></a>
