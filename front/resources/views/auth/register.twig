@@ -6,6 +6,11 @@
     <div id="login-box" class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div id="header">Register</div>
         <div id="body">
+            {% for notification in Notifications.all().get() %}
+            <div class="alert alert-{{ notification.type }}">
+                {% autoescape false %}{{ notification.message }}{% endautoescape %}
+            </div>
+            {% endfor %}
             <p>
                 Already a user? Click <a href="{{ url('login') }}">here</a> to log in.
             </p>

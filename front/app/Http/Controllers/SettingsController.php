@@ -9,31 +9,34 @@ use View;
 use Storage;
 use Debugbar;
 use Notifications;
+use Auth;
 
 class SettingsController extends DashboardController
 {
     public function __construct() {
         parent::__construct();
         
-        $userSettings = $this->user->settings;
-        $allowedSettings = $this->getAvailableSettings();
-        
-        $viewSettings = [];
-        foreach($allowedSettings as $key => $contents) {
-            $item = [];
-            if(is_array($userSettings)) {
-                if(isset($userSettings[$key]))
-                    $item['value'] = $userSettings[$key];
+        if(Auth::check()){
+            $userSettings = $this->user->settings;
+            $allowedSettings = $this->getAvailableSettings();
+
+            $viewSettings = [];
+            foreach($allowedSettings as $key => $contents) {
+                $item = [];
+                if(is_array($userSettings)) {
+                    if(isset($userSettings[$key]))
+                        $item['value'] = $userSettings[$key];
+                }
+
+                if(!isset($item['value'])) {
+                    $item['value'] = $contents['default'];
+                }
+                $item['description'] = $contents['description'];
+                $viewSettings[$key] = $item;
             }
-            
-            if(!isset($item['value'])) {
-                $item['value'] = $contents['default'];
-            }
-            $item['description'] = $contents['description'];
-            $viewSettings[$key] = $item;
+
+            View::share('settings', $viewSettings);
         }
-        
-        View::share('settings', $viewSettings);
     }
     
     protected function getAvailableSettings() {
