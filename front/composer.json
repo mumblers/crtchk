@@ -11,7 +11,8 @@
         "guzzlehttp/guzzle": "^6.2",
         "bican/roles": "^2.1",
         "ramsey/uuid": "^3.3",
-        "gaaarfild/laravel-notifications": "~1.0"
+        "gaaarfild/laravel-notifications": "~1.0",
+        "doctrine/dbal": "^2.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
