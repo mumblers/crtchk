@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use \App\User;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 
 class UserServiceProvider extends ServiceProvider
 {
@@ -16,6 +18,7 @@ class UserServiceProvider extends ServiceProvider
     {
         User::creating(function ($user) {
             $user->settings = [];
+            $user->api_key = Uuid::uuid4()->toString();
         });
     }
 
