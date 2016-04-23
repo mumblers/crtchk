@@ -5,5 +5,36 @@
 {% extends "dashboard/templates/base.twig" %}
 
 {% block content %}
-    Welcome <strong>{{ user.name|capitalize }}</strong>!
+    <table class="table">
+        <thead>
+            <tr>
+                <td>id</td>
+                <td>name</td>
+                <td>Actie</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for domain in domains %}
+                <tr>
+                    <td>{{ domain.id }}</td>
+                    <td><a href="{{ domain.url }}" target="_blank">{{ domain.name }}</a></td>
+                    <td></td>
+                    <td>
+                        {% if user.can('view.domains') %}
+                            <a href="{{ url("/dashboard/domain/"~domain.id) }}">
+                                <button class="btn btn-circle btn-primary " title="View Domain {{ domain.name }}" >
+                                    <i class="fa fa-eye"></i>
+                                </button></a>
+                        {% endif %}
+                        {% if user.can('edit.domains') %}
+                            <a href="{{ url("/dashboard/domain/edit/"~domain.id) }}">
+                                <button class="btn btn-circle btn-primary btn-sm" title="View Domain {{ domain.name }}" >
+                                    <i class="fa fa-pencil"></i>
+                                </button></a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
