@@ -10,6 +10,7 @@
             <tr>
                 <td>id</td>
                 <td>name</td>
+                <td>Verified At</td>
                 <td>Actie</td>
             </tr>
         </thead>
@@ -17,8 +18,8 @@
             {% for domain in domains %}
                 <tr>
                     <td>{{ domain.id }}</td>
-                    <td><a href="{{ domain.url }}" target="_blank">{{ domain.name }}</a></td>
-                    <td></td>
+                    <td><a href="http://{{ domain.url }}" target="_blank">{{ domain.name }}</a></td>
+                    <td>{{domain.verified_at}}</td>
                     <td>
                         {% if user.can('view.domains') %}
                             <a href="{{ url("/dashboard/domain/"~domain.id) }}">
