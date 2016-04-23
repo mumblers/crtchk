@@ -37,7 +37,7 @@ class SettingsController extends DashboardController
     }
     
     protected function getAvailableSettings() {
-        return json_decode(Storage::disk('root')->get('user_settings.json'), true);
+        return config('usersettings');
     }
     
     public function show() {
