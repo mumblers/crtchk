@@ -15,6 +15,8 @@ class CreateDomainsTable extends Migration {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('name');
+            $table->string('url', 1000);
+            $table->date('verified_at')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

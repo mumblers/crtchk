@@ -17,7 +17,8 @@
             {% for domain in domains %}
                 <tr>
                     <td>{{ domain.id }}</td>
-                    <td>{{ domain.name }}</td>
+                    <td><a href="{{ domain.url }}" target="_blank">{{ domain.name }}</a></td>
+                    <td></td>
                     <td>
                         {% if user.can('view.domains') %}
                             <a href="{{ url("/dashboard/domain/"~domain.id) }}">

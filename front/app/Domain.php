@@ -22,17 +22,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Domain whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Domain whereDeletedAt($value)
  * @mixin \Eloquent
+ * @property string $url
+ * @property \Carbon\Carbon $verified_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Domain whereUrl($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Domain whereVerifiedAt($value)
  */
 class Domain extends Model {
 	use SoftDeletes, UuidForKey;
 
 	protected $table = 'domains';
 	protected $primaryKey = 'id';
+	protected $dates = ['verified_at'];
 	public $timestamps = true;
 
-	protected $fillable = ['name'];
-
-
+	protected $fillable = ['name', 'url', 'verified_at'];
 
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

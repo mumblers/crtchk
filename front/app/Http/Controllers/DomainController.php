@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Domain;
 use Auth;
 
 class DomainController extends BaseController {
@@ -21,9 +22,10 @@ class DomainController extends BaseController {
 
 	/**
 	 * Get the information of a single Domain.
+	 * @param Domain $domain
 	 * @return $this
 	 */
-	function getView(){
+	function getView(Domain $domain){
 
 	}
 
@@ -31,7 +33,7 @@ class DomainController extends BaseController {
 	 * Get the page where you can edit a Domain.
 	 * @return $this
 	 */
-	function getEdit(){
+	function getEdit(Domain $domain){
 
 	}
 
@@ -39,7 +41,7 @@ class DomainController extends BaseController {
 	 * Get the page where you can delete a Domain.
 	 * @return $this
 	 */
-	function getDelete(){
+	function getDelete(Domain $domain){
 
 	}
 
@@ -47,7 +49,7 @@ class DomainController extends BaseController {
 	 * Handle an edit action of a Domain.
 	 * @return $this
 	 */
-	function postEdit(){
+	function postEdit(Domain $domain){
 
 	}
 
@@ -55,7 +57,7 @@ class DomainController extends BaseController {
 	 * Handle a del
 	 * @return $this
 	 */
-	function postDelete(){
+	function postDelete(Domain $domain){
 
 	}
 

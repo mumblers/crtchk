@@ -27,12 +27,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('settings', ['middleware' => 'permission:view.settings', 'uses' => 'SettingsController@show']);
     Route::post('settings', ['middleware' => 'permission:edit.settings', 'uses' => 'SettingsController@edit']);
 
-    Route::get('domains', ['middleware' => 'permission:view.domains', 'uses' =>                    'DomainController@getAll']);
-    Route::get('domain/{domainid}', ['middleware' => 'permission:view.domains', 'uses' =>          'DomainController@getView']);
-    Route::get('domain/edit/{domainid}', ['middleware' => 'permission:edit.domains', 'uses' =>     'DomainController@getEdit']);
-    Route::get('domain/delete/{domainid}', ['middleware' => 'permission:edit.domains', 'uses' =>   'DomainController@getDelete']);
+    Route::get('domains', ['middleware' => 'permission:view.domains', 'uses' =>                  'DomainController@getAll']);
+    Route::get('domain/{domain}', ['middleware' => 'permission:view.domains', 'uses' =>          'DomainController@getView']);
+    Route::get('domain/edit/{domain}', ['middleware' => 'permission:edit.domains', 'uses' =>     'DomainController@getEdit']);
+    Route::get('domain/delete/{domain}', ['middleware' => 'permission:edit.domains', 'uses' =>   'DomainController@getDelete']);
 
-    Route::post('domain/edit/{domainid}', ['middleware' => 'permission:edit.domains', 'uses' =>    'DomainController@postEdit']);
-    Route::post('domain/delete/{domainid}', ['middleware' => 'permission:edit.domains', 'uses' =>  'DomainController@postDelete']);
+    Route::post('domain/edit/{domain}', ['middleware' => 'permission:edit.domains', 'uses' =>    'DomainController@postEdit']);
+    Route::post('domain/delete/{domain}', ['middleware' => 'permission:edit.domains', 'uses' =>  'DomainController@postDelete']);
 
 });
