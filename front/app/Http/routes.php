@@ -28,4 +28,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::post('settings', ['middleware' => 'permission:edit.settings', 'uses' => 'SettingsController@edit']);
 
     Route::get('domains', ['middleware' => 'permission:view.domains', 'uses' => 'DomainController@getPage']);
+    
+    Route::get('users', ['middleware' => 'permission:view.users', 'uses' => 'UsersController@show']);
+    Route::get('users/{id}', ['middleware' => 'permission:view.users', 'uses' => 'UsersController@details']);
 });

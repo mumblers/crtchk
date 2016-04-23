@@ -1,0 +1,54 @@
+{% set pagetitle = 'Details for '~detailedUser.name %}
+{% set active = 'users' %}
+
+{% extends "dashboard/templates/base.twig" %}
+
+{% block content %}
+<a class="btn btn-success" href="{{ url('dashboard/users/'~user.id~'/edit') }}">Edit</a>
+<a class="btn btn-danger" href="{{ url('dashboard/users/'~user.id~'/remove') }}">Remove</a>
+<br /><br />
+<div class="row">
+    <div class="col-lg-4">
+        <table class="table">
+            <tr>
+                <th scope="row">User ID</th>
+                <td>{{ detailedUser.id }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Name</th>
+                <td>{{ detailedUser.name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">API key</th>
+                <td>{{ detailedUser.api_key }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Created at</th>
+                <td>{{ detailedUser.created_at }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Updated at</th>
+                <td>{{ detailedUser.updated_at }}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-lg-4 col-lg-offset-4">
+        <h3>Roles</h3>
+        <table class="table">
+            {% for role in detailedUser.getRoles() %}
+            <tr>
+                <td>{{ role.slug }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h3>Permissions</h3>
+        <table class="table">
+            {% for permission in detailedUser.getPermissions() %}
+            <tr>
+                <td>{{ permission.slug }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -56,20 +56,20 @@
                     {% if user.can('view.domains') %}<li>
                         <a {% if active == 'domains' %}class="active-menu"{% endif %} href="{{ url('dashboard/domains') }}"><i class="fa fa-lock"></i> Domains</a>
                     </li>{% endif %}
-                    <li{% if active == 'users' %} class="active"{% endif %}>
+                    {% if user.can('view.users') or user.can('view.roles') or user.can('view.permissions') %}<li{% if active == 'users' %} class="active"{% endif %}>
                         <a href="#"><i class="fa fa-users"></i> User administration<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li>
-                                <a href="#">Users</a>
-                            </li>
-                            <li>
-                                <a href="#">Roles</a>
-                            </li>
-                            <li>
-                                <a href="#">Permissions</a>
-                            </li>
+                            {% if user.can('view.users') %}<li>
+                                <a href="{{ url('dashboard/users') }}">Users</a>
+                            </li>{% endif %}
+                            {% if user.can('view.roles') %}<li>
+                                <a href="{{ url('dashboard/roles') }}">Roles</a>
+                            </li>{% endif %}
+                            {% if user.can('view.permissions') %}<li>
+                                <a href="{{ url('dashboard/permissions') }}">Permissions</a>
+                            </li>{% endif %}
                         </ul>
-                    </li>
+                    </li>{% endif %}
                 </ul>
             </div>
         </nav>
@@ -106,6 +106,7 @@
     <script src="{{ url('/') }}/assets/dashboard/js/jquery.metisMenu.js"></script>
       <!-- Custom Js -->
     <script src="{{ url('/') }}/assets/dashboard/js/custom-scripts.js"></script>
+    {% block endscripts %}{% endblock %}
     
    
 </body>
