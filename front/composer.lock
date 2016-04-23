@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ed52d90f7065425eafd41c91fe2e01d3",
-    "content-hash": "e4fabf8efcda50013332a73ea549aa8f",
+    "hash": "dd673456382a4b1666a6ecfdfffbff73",
+    "content-hash": "7d132608cc617f0f762c5796fbf0d58e",
     "packages": [
         {
             "name": "bican/roles",
@@ -205,6 +205,50 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
+        },
+        {
+            "name": "gaaarfild/laravel-notifications",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gaaarfild/laravel-notifications.git",
+                "reference": "39e16a0b50db9beb12769bc0b46163d006e44c9f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gaaarfild/laravel-notifications/zipball/39e16a0b50db9beb12769bc0b46163d006e44c9f",
+                "reference": "39e16a0b50db9beb12769bc0b46163d006e44c9f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=4.2",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gaaarfild\\LaravelNotifications\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dinar Garipov",
+                    "email": "garipov.dinar@gmail.com"
+                }
+            ],
+            "description": "Convenient flash notifications",
+            "keywords": [
+                "laravel",
+                "notifications"
+            ],
+            "time": "2015-12-25 23:05:48"
         },
         {
             "name": "guzzlehttp/guzzle",

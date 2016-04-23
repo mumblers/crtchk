@@ -163,6 +163,8 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Bican\Roles\RolesServiceProvider::class,
+        App\Providers\UserServiceProvider::class,
+        Gaaarfild\LaravelNotifications\LaravelNotificationsServiceProvider::class,
 
     ],
 
@@ -212,6 +214,7 @@ return [
 
         'Twig' => TwigBridge\Facade\Twig::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Notifications' => Gaaarfild\LaravelNotifications\NotificationsFacade::class,
 
     ],
 

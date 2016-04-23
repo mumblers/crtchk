@@ -17,12 +17,15 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::group(['prefix' => 'dashboard'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('/', 'DashboardController@showIndex');
     
-    Route::get('profile', 'ProfileController@show');
-    Route::get('profile/edit', 'ProfileController@editForm');
-    Route::post('profile/edit', 'ProfileController@edit');
+    Route::get('profile', ['middleware' => 'permission:view.profile', 'uses' => 'ProfileController@show']);
+    Route::get('profile/edit', ['middleware' => 'permission:edit.profile', 'uses' => 'ProfileController@editForm']);
+    Route::post('profile/edit', ['middleware' => 'permission:edit.profile', 'uses' => 'ProfileController@edit']);
+    
+    Route::get('settings', ['middleware' => 'permission:view.settings', 'uses' => 'SettingsController@show']);
+    Route::post('settings', ['middleware' => 'permission:edit.settings', 'uses' => 'SettingsController@edit']);
 
-    Route::get('domains', 'DomainController@getPage');
+    Route::get('domains', ['middleware' => 'permission:view.domains', 'uses' => 'DomainController@getPage']);
 });

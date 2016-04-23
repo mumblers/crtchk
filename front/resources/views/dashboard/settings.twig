@@ -1,0 +1,25 @@
+{% set pagetitle = 'settings' %}
+
+{% extends "dashboard/templates/base.twig" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" action="{{ url('dashboard/settings') }}">
+            {{ csrf_field() }}
+            {% for key, setting in settings %}
+            <div class="form-group{{ errors.has(key) ? ' has-error' : '' }}">
+                <label for="{{ key }}">{{ setting.description }}</label>
+                <input type="text" class="form-control" id="{{ key }}" name="{{ key }}" value="{{ setting.value }}"{% if not user.can('edit.settings') %} disabled{% endif %} />
+                {% if errors.has(key) %}
+                    <span class="help-block">
+                        <strong>{{ errors.first(key) }}</strong>
+                    </span>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary"{% if not user.can('edit.settings') %} disabled{% endif %}>Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

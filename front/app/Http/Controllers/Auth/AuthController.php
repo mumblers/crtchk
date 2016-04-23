@@ -7,6 +7,10 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Bican\Roles\Models\Role;
+use Notifications;
+use DB;
+use Login;
 
 class AuthController extends Controller
 {
@@ -63,10 +67,27 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        
+        $userRole = Role::where('slug', 'user')->first();
+        $user->attachRole($userRole);
+        
+        return $user;
+    }
+    
+    protected function authenticated($request, $user) {
+        $lastLogon = DB::table('logins')->where('user_id', $user->id)->orderBy('created_at', 'desc')->take(1)->get();
+        
+        if(isset($lastLogon[0])) {
+            Notifications::info('Welcome back <strong>'.$user->name.'</strong>. You last logon was at '.$lastLogon[0]->created_at.' from '.$lastLogon[0]->ip);
+        }
+        
+        \App\Login::create(['user_id' => $user->id, 'ip' => $_SERVER['REMOTE_ADDR']]);
+        
+        return redirect()->intended($this->redirectPath());
     }
 }

@@ -25,7 +25,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">CrtChk</a>
+                <a class="navbar-brand" href="{{ url('dashboard') }}">CrtChk</a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
@@ -34,10 +34,10 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="{{ url('dashboard/profile') }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="{{ url('dashboard/settings') }}"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
+                        {% if user.can('view.profile') %}<li><a href="{{ url('dashboard/profile') }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>{% endif %}
+                        {% if user.can('view.settings') %}<li><a href="{{ url('dashboard/settings') }}"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>{% endif %}
                         <li class="divider"></li>
                         <li><a href="{{ url('logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
@@ -53,14 +53,33 @@
                     <li>
                         <a {% if active == 'index' %}class="active-menu"{% endif %} href="{{ url('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
-                    <li>
+                    {% if user.can('view.domains') %}<li>
                         <a {% if active == 'domains' %}class="active-menu"{% endif %} href="{{ url('dashboard/domains') }}"><i class="fa fa-lock"></i> Domains</a>
+                    </li>{% endif %}
+                    <li{% if active == 'users' %} class="active"{% endif %}>
+                        <a href="#"><i class="fa fa-users"></i> User administration<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="#">Users</a>
+                            </li>
+                            <li>
+                                <a href="#">Roles</a>
+                            </li>
+                            <li>
+                                <a href="#">Permissions</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
         </nav>
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
+            {% for notification in Notifications.all().get() %}
+            <div class="alert alert-{{ notification.type }}">
+                {% autoescape false %}{{ notification.message }}{% endautoescape %}
+            </div>
+            {% endfor %}
             <div id="page-inner">
 			 <div class="row">
                     <div class="col-md-12">
