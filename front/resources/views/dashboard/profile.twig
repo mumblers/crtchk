@@ -3,10 +3,9 @@
 {% extends "dashboard/templates/base.twig" %}
 
 {% block content %}
-    {% if user.can('edit.profile') %}<a class="btn btn-primary" href="{{ url('dashboard/profile/edit') }}">Edit profile</a>{% endif %}
-    <br /><br /><br />
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
+            <h2>Details</h2><br>
             <table class="table">
                 <tr>
                     <td>username</td>
@@ -26,5 +25,16 @@
                 </tr>
             </table>
         </div>
+        <div class="col-md-4">
+            <h2>History</h2><br>
+            TODO
+        </div>
     </div>
+    {% if user.can('edit.profile') %}
+        <div class="row">
+            <div class="col-lg-12">
+                <a class="btn btn-warning" href="{{ url('dashboard/profile/edit') }}">Edit profile</a>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}

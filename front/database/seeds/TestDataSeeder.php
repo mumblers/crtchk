@@ -18,7 +18,7 @@ class TestDataSeeder extends Seeder {
 			'password' => bcrypt('123456'),
 		]);
 
-		$userRole = Role::where('slug', 'user')->first();
+		$userRole = Role::where('slug', 'admin')->first();
 		$user->attachRole($userRole);
 
 		$domain1 = Domain::create([

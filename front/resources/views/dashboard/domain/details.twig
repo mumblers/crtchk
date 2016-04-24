@@ -32,10 +32,12 @@
             <h2>Certificate Information</h2>
         </div>
     </div>
+    {% if user.can('edit.domains') %}
     <div class="row">
         <div class="col-lg-12">
             <a class="btn btn-warning" href="{{ url('dashboard/domain/edit/'~domain.id) }}">Edit</a>
             <a class="btn btn-danger" href="{{ url('dashboard/domain/delete/'~domain.id) }}">Delete</a>
         </div>
     </div>
+    {% endif %}
 {% endblock %}
