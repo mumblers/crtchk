@@ -1,14 +1,13 @@
-{% set pagetitle = 'Details for '~detailedUser.name %}
+{% set pagetitle = 'User '~detailedUser.name %}
 {% set active = 'users' %}
 
 {% extends "dashboard/templates/base.twig" %}
 
 {% block content %}
-<a class="btn btn-success" href="{{ url('dashboard/users/'~user.id~'/edit') }}">Edit</a>
-<a class="btn btn-danger" href="{{ url('dashboard/users/'~user.id~'/remove') }}">Remove</a>
-<br /><br />
 <div class="row">
     <div class="col-lg-4">
+        <h3>Details</h3>
+        <br>
         <table class="table">
             <tr>
                 <th scope="row">User ID</th>
@@ -32,8 +31,9 @@
             </tr>
         </table>
     </div>
-    <div class="col-lg-4 col-lg-offset-4">
+    <div class="col-lg-4">
         <h3>Roles</h3>
+        <br>
         <table class="table">
             {% for role in detailedUser.getRoles() %}
             <tr>
@@ -41,14 +41,26 @@
             </tr>
             {% endfor %}
         </table>
+    </div>
+    <div class="col-lg-4">
         <h3>Permissions</h3>
+        <br>
         <table class="table">
             {% for permission in detailedUser.getPermissions() %}
-            <tr>
-                <td>{{ permission.slug }}</td>
-            </tr>
+                <tr>
+                    <td>{{ permission.slug }}</td>
+                </tr>
             {% endfor %}
         </table>
     </div>
 </div>
+{% if user.can('edit.users') %}
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="{{ url('dashboard/users/edit/'~user.id) }}" title="Edit" class="btn btn-warning">Edit</a>
+            <a href="{{ url('dashboard/users/delete/'~user.id) }}" title="Remove" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+{% endif %}
+
 {% endblock %}
