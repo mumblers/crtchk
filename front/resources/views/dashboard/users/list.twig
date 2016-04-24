@@ -4,6 +4,8 @@
 {% extends "dashboard/templates/base.twig" %}
 
 {% block content %}
+<a class="btn btn-primary" href="{{ url('dashboard/users/add') }}">Add user</a>
+<br /><br />
 <div class="row">
     <div class="col-md-12">
         <!-- Advanced Tables -->
@@ -13,7 +15,7 @@
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <table class="table table-striped table-bordered table-hover" id="users">
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -27,9 +29,9 @@
                             {% for user in users %}
                             <tr class="odd gradeX">
                                 <td>
-                                    <a href="{{ url('dashboard/users/'~user.id) }}" title="Show details"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                    <a href="{{ url('dashboard/users/'~user.id~'/edit') }}" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                    <a href="{{ url('dashboard/users/'~user.id~'/remove') }}" title="Remove"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                    <a class="btn btn-circle btn-primary" href="{{ url('dashboard/users/'~user.id) }}" title="Show details"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                    <a class="btn btn-circle btn-success" href="{{ url('dashboard/users/'~user.id~'/edit') }}" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    <a class="btn btn-circle btn-danger" href="{{ url('dashboard/users/'~user.id~'/remove') }}" title="Remove"><i class="fa fa-times" aria-hidden="true"></i></a>
                                 </td>
                                 <td>{{ user.name }}</td>
                                 <td>{{ user.email }}</td>
@@ -55,7 +57,7 @@
 <script src="{{ url('/') }}/assets/dashboard/js/dataTables/dataTables.bootstrap.js"></script>
     <script>
         $(document).ready(function () {
-            $('#dataTables-example').dataTable();
+            $('#users').dataTable();
         });
 </script>
 {% endblock %}
