@@ -15,6 +15,10 @@ body {
     font-weight: normal !important;
 }
 
+.page-header {
+    margin-bottom: 15px !important;
+}
+
 #wrapper {
     width: 100%;
     background: #09192A;

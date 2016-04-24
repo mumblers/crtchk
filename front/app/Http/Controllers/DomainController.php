@@ -16,7 +16,7 @@ class DomainController extends BaseController {
 
 		$domains = $user->domains;
 
-		return view('dashboard.domains')
+		return view('dashboard.domain.list')
 			->with("domains" , $domains);
 	}
 
@@ -26,7 +26,8 @@ class DomainController extends BaseController {
 	 * @return $this
 	 */
 	function getView(Domain $domain){
-
+		return view('dashboard.domain.details')
+			->with('domain', $domain);
 	}
 
 	/**

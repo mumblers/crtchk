@@ -1,0 +1,41 @@
+{% set pagetitle = domain.name %}
+{% set subtitle = 'CrtChk SSL checker' %}
+{% set active = 'domains' %}
+
+{% extends "dashboard/templates/base.twig" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-4">
+            <h2>Details</h2>
+            <br>
+            <table class="table">
+                <tr>
+                    <th scope="row">Name</th>
+                    <td>{{ domain.name }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">ID</th>
+                    <td>{{ domain.id }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">URL</th>
+                    <td><a href="http://{{ domain.url }}" target="_blank">{{ domain.url }}</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">Verified At</th>
+                    <td>{{ domain.verified_at }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-8">
+            <h2>Certificate Information</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-warning" href="{{ url('dashboard/domain/edit/'~domain.id) }}">Edit</a>
+            <a class="btn btn-danger" href="{{ url('dashboard/domain/delete/'~domain.id) }}">Delete</a>
+        </div>
+    </div>
+{% endblock %}

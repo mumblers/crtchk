@@ -81,11 +81,13 @@
             </div>
             {% endfor %}
             <div id="page-inner">
-			 <div class="row">
+			    <div class="row">
                     <div class="col-md-12">
+                        {% block title %}
                         <h1 class="page-header">
                             {{ pagetitle|capitalize }} <small>{{ subtitle }}</small>
                         </h1>
+                        {% endblock %}
                     </div>
                 </div>
                 <!-- /. ROW  -->

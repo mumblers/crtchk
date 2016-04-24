@@ -22,16 +22,11 @@
                     <td>{{domain.verified_at}}</td>
                     <td>
                         {% if user.can('view.domains') %}
-                            <a href="{{ url("/dashboard/domain/"~domain.id) }}">
-                                <button class="btn btn-circle btn-primary " title="View Domain {{ domain.name }}" >
-                                    <i class="fa fa-eye"></i>
-                                </button></a>
+                            <a class="btn btn-primary" href="{{ url('dashboard/domain/'~domain.id) }}">View</a>
                         {% endif %}
                         {% if user.can('edit.domains') %}
-                            <a href="{{ url("/dashboard/domain/edit/"~domain.id) }}">
-                                <button class="btn btn-circle btn-primary btn-sm" title="View Domain {{ domain.name }}" >
-                                    <i class="fa fa-pencil"></i>
-                                </button></a>
+                            <a class="btn btn-warning" href="{{ url('dashboard/domain/edit/'~domain.id) }}">Edit</a>
+                            <a class="btn btn-danger" href="{{ url('dashboard/domain/delete/'~domain.id) }}">Delete</a>
                         {% endif %}
                     </td>
                 </tr>
