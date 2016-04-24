@@ -11,11 +11,11 @@ use Notifications;
 class ProfileController extends DashboardController
 {
     public function show() {
-        return view('dashboard.profile');
+        return view('dashboard.profile.details');
     }
     
     public function editForm() {
-        return view('dashboard.editProfileForm');
+        return view('dashboard.profile.edit');
     }
     
     public function edit(Request $request) {

@@ -6,56 +6,43 @@
 {% block content %}
 <div class="row">
     <div class="col-md-12">
-        <!-- Advanced Tables -->
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                 Advanced Tables
-            </div>
-            <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                        <thead>
-                            <tr>
-                                <th>&nbsp;</th>
-                                <th>Name</th>
-                                <th>email</th>
-                                <th>Roles</th>
-                                <th>Created at</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for user in users %}
-                            <tr class="odd gradeX">
-                                <td>
-                                    <a href="{{ url('dashboard/users/'~user.id) }}" title="Show details"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                    <a href="{{ url('dashboard/users/'~user.id~'/edit') }}" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                    <a href="{{ url('dashboard/users/'~user.id~'/remove') }}" title="Remove"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                </td>
-                                <td>{{ user.name }}</td>
-                                <td>{{ user.email }}</td>
-                                <td>
-                                    {% for role in user.getRoles() %}
-                                    {{ role.slug }}<br />
-                                    {% endfor %}
-                                </td>
-                                <td>{{ user.created_at }}</td>
-                            </tr>
+        <div class="table-responsive">
+            <table class="table datatable" id="dataTables">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>email</th>
+                        <th>Roles</th>
+                        <th>Created at</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr class="">
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            {% for role in user.getRoles() %}
+                            {{ role.slug }}<br />
                             {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                        </td>
+                        <td>{{ user.created_at }}</td>
+                        <td>
+                            {% if user.can('view.users') %}
+                                <a href="{{ url('dashboard/users/'~user.id) }}" title="Show details" class="btn btn-primary">View</a>
+                            {% endif %}
+                            {% if user.can('edit.users') %}
+                            <a href="{{ url('dashboard/users/edit/'~user.id) }}" title="Edit" class="btn btn-warning">Edit</a>
+                            <a href="{{ url('dashboard/users/delete/'~user.id) }}" title="Remove" class="btn btn-danger">Delete</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-        <!--End Advanced Tables -->
     </div>
 </div>
-{% endblock %}
-{% block endscripts %}
-<script src="{{ url('/') }}/assets/dashboard/js/dataTables/jquery.dataTables.js"></script>
-<script src="{{ url('/') }}/assets/dashboard/js/dataTables/dataTables.bootstrap.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#dataTables-example').dataTable();
-        });
-</script>
+
 {% endblock %}
